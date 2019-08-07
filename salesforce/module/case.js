@@ -1,5 +1,3 @@
-"use strict";
-
 let auth = require("./slack-salesforce-auth"),
     force = require("./force"),
     CASE_TOKEN = process.env.SLACK_CASE_TOKEN;
