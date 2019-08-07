@@ -1,7 +1,7 @@
 "use strict";
 
-let request = require("request"),
-    API_VERSION = 'v35.0';
+let request = require("request");
+   
 
 let getUserId = (oauth) => (typeof(oauth) !== 'undefined') ? oauth.id.split('/').pop() : undefined;
 
