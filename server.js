@@ -3,7 +3,6 @@
 let express = require('express'),
     bodyParser = require('body-parser'),
     auth = require('./slack-salesforce-auth'),
-    opportunity = require('./opportunity'),
     _case = require('./case'),
     whoami = require('./whoami'),
     actions = require('./actions'),
