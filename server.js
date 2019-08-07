@@ -9,11 +9,9 @@ let express = require('express'),
     app = express();
 
 
-app.enable('trust proxy');
 
 app.set('port', process.env.PORT || 3000);
 
-app.use('/', express.static(__dirname + '/www')); // serving company logos after successful authentication
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
