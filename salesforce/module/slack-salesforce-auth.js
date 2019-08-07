@@ -1,4 +1,4 @@
-"use strict";
+//"use strict";
 
 var SLACK_LOGIN_TOKEN = process.env.SLACK_LOGIN_TOKEN,
     SLACK_LOGOUT_TOKEN = process.env.SLACK_LOGOUT_TOKEN,
