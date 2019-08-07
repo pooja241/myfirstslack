@@ -2,9 +2,9 @@
 
 let express = require('express'),
     bodyParser = require('body-parser'),
-    auth = require('./slack-salesforce-auth'),
-    _case = require('./case'),
-    whoami = require('./whoami'),
+    auth = require('.salesforce/module/slack-salesforce-auth'),
+    _case = require('.salesforce/module/case'),
+    whoami = require('.salesforce/module/whoami'),
     actions = require('./actions'),
     app = express();
 
