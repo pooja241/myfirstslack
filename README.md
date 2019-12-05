@@ -1,2 +1,0 @@
-# myfirstslack
-salck salesforce integration

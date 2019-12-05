@@ -1,29 +1,35 @@
-"use strict";
+require('dotenv').config();
+const http = require("http");
+const express = require("express"),
+  bodyParser = require("body-parser"),
+   //axios = require('axios'),  
+  _case = require("./case"),
 
-let express = require('express'),
-    bodyParser = require('body-parser'),
-    auth = require('.salesforce/module/slack-salesforce-auth'),
-    _case = require('.salesforce/module/case'),
-    whoami = require('.salesforce/module/whoami'),
-    actions = require('./actions'),
-    app = express();
+  app = express();
+var cronLink = require("node-cron-link");
+var keepAlive = require("node-keepalive");
+//keepAlive({}, app);
+app.enable('trust proxy');
+app.set("port", process.env.PORT || 0);
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.post("/case", _case.execute);
 
 
-
-app.set('port', process.env.PORT || 3000);
-
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.post('/actions', actions.handle);
-
-app.post('/case', _case.execute);
-app.post('/whoami', whoami.execute);
-app.post('/login', auth.loginLink);
-app.post('/logout', auth.logout);
-app.get('/login/:slackUserId', auth.oauthLogin);
-app.get('/oauthcallback', auth.oauthCallback);
-
-app.listen(app.get('port'), function() {
-    console.log('Express server listening on port ' + app.get('port'));
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
 });
+http.createServer(app).listen(app.get("port"), () => {
+  setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+}, 280000);
+
+  
+  console.log(`server listening on port ${app.get("port")}`);
+});
+
+
+cronLink("https://heady-adasaurus.glitch.me/keepalive", {time: 2, kickStart: true});
+
+
